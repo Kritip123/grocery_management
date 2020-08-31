@@ -1,4 +1,4 @@
-package com.example.grocerymanagement;
+package com.dsc.grocerymanagement;
 
 import org.junit.Test;
 
