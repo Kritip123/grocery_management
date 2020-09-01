@@ -4,87 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="com.dsc.grocerymanagement.LoginActivity">
+    android:orientation="vertical"
+    tools:context="com.dsc.grocerymanagement.activities.LoginActivity">
 
     <LinearLayout
-        android:id="@+id/llEmail"
+        android:id="@+id/layoutForEmailSignIn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:orientation="vertical">
-    <EditText
-        android:id="@+id/etxtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginHorizontal="20dp"
-        android:textSize="20sp"
-        android:padding="10dp"
-        android:hint="Email Address" />
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    <EditText
-        android:id="@+id/etxtPassE"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="20dp"
-        android:padding="10dp"
-        android:hint="Password" />
-
-    <Button
-        android:id="@+id/btnLoginE"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:text="LOGIN"
-        android:textSize="20sp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llMobile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <EditText
-            android:id="@+id/etxtMobile"
+
+            android:id="@+id/emailTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="200dp"
-            android:layout_marginHorizontal="20dp"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:hint="Mobile number" />
+            android:layout_marginRight="20dp"
+            android:background="@drawable/text_boundary_background"
+            android:drawableStart="@drawable/ic_action_phone"
+            android:drawablePadding="3dp"
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/passFieldForEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/text_boundary_background"
+            android:drawableStart="@drawable/ic_action_password"
+            android:drawablePadding="3dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:padding="10dp" />
 
         <Button
-            android:id="@+id/btnOtpM"
+            android:id="@+id/btnLoginEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/Login"
+            android:textAllCaps="false"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/forgotPassEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Request OTP"
             android:layout_gravity="center"
-            android:textSize="20sp"/>
+            android:layout_marginTop="5dp"
+            android:padding="8dp"
+            android:textColor="#ffffff"
+            android:text="@string/forgot_password"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/registerEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:textColor="#ffffff"
+                android:text="@string/not_registered_register_yourself"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutForMobileSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <EditText
-            android:id="@+id/etxtOtpM"
+            android:id="@+id/MobileNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:textSize="20sp"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/text_boundary_background"
+            android:hint="@string/mobile_number"
             android:padding="10dp"
-            android:hint="Enter OTP" />
+            android:textSize="20sp" />
 
         <Button
-            android:id="@+id/btnLoginM"
+            android:id="@+id/btnRequestOtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="@string/request_otp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/enterOtpMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/text_boundary_background"
+            android:hint="@string/enter_otp"
+            android:inputType="numberSigned"
+            android:padding="10dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnLoginMobile"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:text="LOGIN"
-            android:textSize="20sp"/>
+            android:layout_marginTop="50dp"
+            android:text="@string/Login"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>
