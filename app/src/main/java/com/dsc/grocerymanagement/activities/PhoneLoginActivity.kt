@@ -3,9 +3,7 @@ package com.dsc.grocerymanagement.activities
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.dsc.grocerymanagement.R
 import com.google.firebase.FirebaseException
@@ -23,7 +21,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private var pAuth: PhoneAuthProvider? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_phone_login)
         mobileNumber = findViewById(R.id.MobileNumber)
         enterOtpMobile = findViewById(R.id.enterOtpMobile)
@@ -36,7 +34,7 @@ class PhoneLoginActivity : AppCompatActivity() {
         btnRequestOtp.setOnClickListener {
             val mobile = mobileNumber.text.toString()
             if (mobile.length == 10) {
-                val mobNumber= "+91$mobile"
+                val mobNumber = "+91$mobile"
                 pAuth!!.verifyPhoneNumber(
                         mobNumber, // Phone number to verify
                         60, // Timeout duration
@@ -45,8 +43,8 @@ class PhoneLoginActivity : AppCompatActivity() {
                         object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
                             override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) { //If user is automatically verified by system
-                                Toast.makeText(this@PhoneLoginActivity, "Automatic Verification initiated!!",
-                                        Toast.LENGTH_SHORT).show()
+                                /*Toast.makeText(this@PhoneLoginActivity, "Automatic Verification initiated!!",
+                                        Toast.LENGTH_SHORT).show()*/
                                 signInWithPhoneAuthCredential(phoneAuthCredential) //Logging in user as he/she is verified
                                 //println("cred ${phoneAuthCredential.smsCode}")
                             }
@@ -119,8 +117,8 @@ class PhoneLoginActivity : AppCompatActivity() {
                         task.isSuccessful -> {
                             // Sign-In successful either direct or through OTP.
                             //Intent to next activity
-                            Toast.makeText(this@PhoneLoginActivity, "Logged In successfully",
-                                    Toast.LENGTH_SHORT).show()
+                            /*Toast.makeText(this@PhoneLoginActivity, "Logged In successfully",
+                                    Toast.LENGTH_SHORT).show()*/
                             val user = task.result?.user //Details of user which has currently logged-In
                             updateUI(user) //This is to change the activity upon login
                             //println("users $user")
@@ -143,5 +141,10 @@ class PhoneLoginActivity : AppCompatActivity() {
         Toast.makeText(this@PhoneLoginActivity, "Login successful",
                 //Intent to main activity
                 Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
+        super.onBackPressed()
     }
 }
