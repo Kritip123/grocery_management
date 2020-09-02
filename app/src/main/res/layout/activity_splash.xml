@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Splashscreen"
-    android:background="@drawable/splashbg">
+    android:background="@drawable/splashbg"
+    tools:context=".activities.Splashscreen">
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,10 +25,10 @@
         android:layout_height="55dp"
         android:layout_marginTop="48dp"
         android:fontFamily="sans-serif-black"
-        android:text="GROC MART"
-        android:transitionName="logo_text"
+        android:text="@string/groc_mart"
         android:textAlignment="center"
         android:textSize="36sp"
+        android:transitionName="logo_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="Your Neighborhood Grocers"
+        android:text="@string/your_neighborhood_grocers"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -8,48 +8,40 @@
     android:background="@drawable/loginbg"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.dsc.grocerymanagement.activities.PhoneLoginActivity">
+    tools:context=".activities.PhoneLoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="160dp"
         android:layout_height="174dp"
-        android:transitionName="logo_image"
-        app:srcCompat="@drawable/mainlogo" />
+        android:src="@drawable/mainlogo"
+        android:transitionName="logo_image" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:transitionName="logo_text"
         android:fontFamily="sans-serif-black"
-        android:text="WELCOME TO              GROC MART"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Enter your Phone Number"
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:text="@string/welcome_to_ngroc_mart"
+        android:textSize="30sp"
+        android:transitionName="logo_text" />
 
     <EditText
         android:id="@+id/MobileNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/text_boundary_background"
         android:drawableStart="@drawable/ic_action_phone"
         android:drawablePadding="3dp"
+        android:fontFamily="sans-serif-medium"
         android:hint="@string/mobile_number"
         android:inputType="phone"
-        android:maxLength="14"
+        android:maxLength="10"
         android:maxLines="1"
         android:padding="10dp"
+        android:textAlignment="center"
         android:textSize="20sp" />
 
     <Button
@@ -61,6 +53,7 @@
         android:background="@drawable/buttons"
         android:padding="10dp"
         android:text="@string/request_otp"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="20sp"
@@ -73,13 +66,14 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/text_boundary_background"
+        android:fontFamily="sans-serif-medium"
         android:hint="@string/enter_otp"
         android:inputType="number"
         android:maxLength="6"
         android:maxLines="1"
         android:padding="10dp"
+        android:textAlignment="center"
         android:textSize="20sp" />
-
 
     <Button
         android:id="@+id/btnLoginMobile"
