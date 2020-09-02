@@ -1,8 +1,10 @@
-package com.example.grocerymanagement;
+package com.dsc.grocerymanagement.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.dsc.grocerymanagement.R;
 
 public class MainActivity extends AppCompatActivity {
 
