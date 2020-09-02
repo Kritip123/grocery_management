@@ -9,14 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dsc.grocerymanagement.R
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.*
 import java.util.concurrent.TimeUnit
 
 class PhoneLoginActivity : AppCompatActivity() {
-    private lateinit var MobileNumber: EditText
+    private lateinit var mobileNumber: EditText
     private lateinit var enterOtpMobile: EditText
     private lateinit var btnLoginMobile: Button
     private lateinit var btnRequestOtp: Button
@@ -26,7 +23,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_login)
-        MobileNumber = findViewById(R.id.MobileNumber)
+        mobileNumber = findViewById(R.id.MobileNumber)
         enterOtpMobile = findViewById(R.id.enterOtpMobile)
         btnLoginMobile = findViewById(R.id.btnLoginMobile)
         btnRequestOtp = findViewById(R.id.btnRequestOtp)
@@ -35,30 +32,37 @@ class PhoneLoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         pAuth = PhoneAuthProvider.getInstance()
         btnRequestOtp.setOnClickListener {
-            val mobile = MobileNumber.text.toString()
-            if (mobile.length >= 10) {
+            val mobile = mobileNumber.text.toString()
+            if (mobile.length == 10) {
+                val mobNumber= "+91$mobile"
                 pAuth!!.verifyPhoneNumber(
-                        mobile, // Phone number to verify
+                        mobNumber, // Phone number to verify
                         60, // Timeout duration
                         TimeUnit.SECONDS, // Unit of timeout
                         this, // Activity (for callback binding)
                         object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-                            override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-                                Toast.makeText(this@PhoneLoginActivity, "You have been successfully verified!",
-                                        Toast.LENGTH_SHORT).show()
+                            override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) { //If user is automatically verified by system
+                                /*Toast.makeText(this@PhoneLoginActivity, "Automatic Verification initiated!!",
+                                        Toast.LENGTH_SHORT).show()*/
+                                signInWithPhoneAuthCredential(phoneAuthCredential) //Logging in user as he/she is verified
+                                //println("cred ${phoneAuthCredential.smsCode}")
                             }
 
                             override fun onVerificationFailed(e: FirebaseException) {
-                                if (e is FirebaseAuthInvalidCredentialsException) {
-                                    Toast.makeText(this@PhoneLoginActivity, "Invalid phone number",
-                                            Toast.LENGTH_SHORT).show()
-                                } else if (e is FirebaseTooManyRequestsException) {
-                                    Toast.makeText(this@PhoneLoginActivity, "The SMS quota for the project has been exceeded",
-                                            Toast.LENGTH_SHORT).show()
-                                } else {
-                                    Toast.makeText(this@PhoneLoginActivity, "Some error occurred",
-                                            Toast.LENGTH_SHORT).show()
+                                when (e) {
+                                    is FirebaseAuthInvalidCredentialsException -> {
+                                        Toast.makeText(this@PhoneLoginActivity, "Invalid phone number",
+                                                Toast.LENGTH_SHORT).show()
+                                    }
+                                    is FirebaseTooManyRequestsException -> {
+                                        Toast.makeText(this@PhoneLoginActivity, "Maximum number of OTP'S sent!\nPlease try again later!!",
+                                                Toast.LENGTH_SHORT).show()
+                                    }
+                                    else -> {
+                                        Toast.makeText(this@PhoneLoginActivity, "Some error occurred",
+                                                Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             }
 
@@ -68,39 +72,23 @@ class PhoneLoginActivity : AppCompatActivity() {
                             ) {
                                 Toast.makeText(this@PhoneLoginActivity, "OTP has been sent to your mobile!",
                                         Toast.LENGTH_SHORT).show()
-                                storedVerificationId = verificationId
-                                this@PhoneLoginActivity.enableUserManuallyInputCode()
+                                storedVerificationId = verificationId //Verification Id to login user through OTP
+                                this@PhoneLoginActivity.enableUserManuallyInputCode() //Making the OTP input field and login button available upon sending OTP
                             }
                         }) // OnVerificationStateChangedCallbacks
 
             } else {
-                MobileNumber.error = "Number should be of 10 digits"
-                MobileNumber.requestFocus()
+                mobileNumber.error = "Number should be of 10 digits"
+                mobileNumber.requestFocus()
             }
         }
         btnLoginMobile.setOnClickListener {
             val otp = enterOtpMobile.text.toString().trim()
             if (otp.length == 6) {
                 val credential = PhoneAuthProvider.getCredential(storedVerificationId, otp)
-                mAuth!!.signInWithCredential(credential)
-                        .addOnCompleteListener(this) { task ->
-                            if (task.isSuccessful) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(this@PhoneLoginActivity, "Logged In successfully",
-                                        Toast.LENGTH_SHORT).show()
-                                val user = task.result?.user
-                                // ...
-                            } else if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                                // Sign in failed, display a message and update the UI
-                                Toast.makeText(this@PhoneLoginActivity, "Incorrect OTP!",
-                                        Toast.LENGTH_SHORT).show()
-                                // The verification code entered was invalid
-                            } else {
-                                Toast.makeText(this@PhoneLoginActivity, "Some error occurred!!",
-                                        Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                signInWithPhoneAuthCredential(credential) //To sign-In the user with the input OTP
             } else {
+                //Invalid OTP length
                 enterOtpMobile.error = "Invalid OTP"
                 enterOtpMobile.requestFocus()
             }
@@ -109,14 +97,49 @@ class PhoneLoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if user is signed in (non-null) and change UI to Main Activity.
         val currentUser = mAuth!!.currentUser
-        //updateUI(currentUser)
+        println("userr $currentUser")
+        updateUI(currentUser)
     }
 
     fun enableUserManuallyInputCode() {
+        //Making the OTP input field and login button available upon sending OTP
         btnLoginMobile.visibility = View.VISIBLE
         enterOtpMobile.visibility = View.VISIBLE
         btnRequestOtp.text = getString(R.string.Resend_OTP)
+    }
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        mAuth!!.signInWithCredential(credential)
+                .addOnCompleteListener(this) { task ->
+                    when {
+                        task.isSuccessful -> {
+                            // Sign-In successful either direct or through OTP.
+                            //Intent to next activity
+                            /*Toast.makeText(this@PhoneLoginActivity, "Logged In successfully",
+                                    Toast.LENGTH_SHORT).show()*/
+                            val user = task.result?.user //Details of user which has currently logged-In
+                            updateUI(user) //This is to change the activity upon login
+                            //println("users $user")
+                        }
+                        task.exception is FirebaseAuthInvalidCredentialsException -> {
+                            // Sign in failed
+                            Toast.makeText(this@PhoneLoginActivity, "Incorrect OTP!",
+                                    Toast.LENGTH_SHORT).show()
+                            // The verification code entered was invalid
+                        }
+                        else -> {
+                            Toast.makeText(this@PhoneLoginActivity, "Some error occurred!!",
+                                    Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        Toast.makeText(this@PhoneLoginActivity, "Login successful",
+                //Intent to main activity
+                Toast.LENGTH_SHORT).show()
     }
 }
