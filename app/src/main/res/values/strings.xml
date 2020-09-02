@@ -5,8 +5,10 @@
     <string name="Login">LOGIN</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="not_registered_register_yourself">Not Registered?\nRegister Yourself</string>
-    <string name="mobile_number">Mobile number(With country code)</string>
+    <string name="mobile_number">Enter Mobile number</string>
     <string name="request_otp">Request OTP</string>
     <string name="enter_otp">Enter OTP</string>
     <string name="Resend_OTP">Resend OTP</string>
+    <string name="groc_mart">GROC MART</string>
+    <string name="your_neighborhood_grocers">Your Neighborhood Grocers</string>
 </resources>
