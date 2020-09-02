@@ -112,6 +112,9 @@
             android:layout_marginTop="200dp"
             android:background="@drawable/text_boundary_background"
             android:hint="@string/mobile_number"
+            android:maxLines="1"
+            android:maxLength="14"
+            android:inputType="phone"
             android:padding="10dp"
             android:textSize="20sp" />
 
@@ -132,7 +135,9 @@
             android:layout_marginTop="40dp"
             android:background="@drawable/text_boundary_background"
             android:hint="@string/enter_otp"
-            android:inputType="numberSigned"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="6"
             android:padding="10dp"
             android:textSize="20sp" />
 
