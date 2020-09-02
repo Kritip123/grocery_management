@@ -2,6 +2,7 @@ package com.dsc.grocerymanagement.activities
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -25,6 +26,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private var pAuth: PhoneAuthProvider? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_phone_login)
         MobileNumber = findViewById(R.id.MobileNumber)
         enterOtpMobile = findViewById(R.id.enterOtpMobile)
