@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Grocery Management</string>
+    <string name="app_name">Groc Mart</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="Login">LOGIN</string>
@@ -9,6 +9,8 @@
     <string name="request_otp">Request OTP</string>
     <string name="enter_otp">Enter OTP</string>
     <string name="Resend_OTP">Resend OTP</string>
+    <string name="Open_Drawer">Open Drawer</string>
+    <string name="Close_drawer">Close Drawer</string>
     <string name="groc_mart">GROC MART</string>
     <string name="your_neighborhood_grocers">Your Neighborhood Grocers</string>
     <string name="welcome_to_ngroc_mart">WELCOME TO\nGROC MART</string>

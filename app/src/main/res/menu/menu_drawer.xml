@@ -3,21 +3,41 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
-            android:title="test"/>
+            android:icon="@drawable/home"
+            android:title="Home"/>
         <item
-            android:id="@+id/Profile"
-            android:title="test"/>
+            android:id="@+id/spices"
+            android:title="Spices"/>
         <item
-            android:id="@+id/Favourites"
-            android:title="test"/>
+            android:id="@+id/pulses"
+            android:title="Pulses"/>
         <item
-            android:id="@+id/History"
-            android:title="test"/>
+            android:id="@+id/dairy"
+            android:title="Dairy products"/>
         <item
-            android:id="@+id/faq"
-            android:title="test"/>
+            android:id="@+id/hCare"
+            android:title="Home Care"/>
         <item
-            android:id="@+id/Logout"
-            android:title="test"/>
+            android:id="@+id/bCare"
+            android:title="Baby Care"/>
+        <item
+            android:id="@+id/beverages"
+            android:title="Beverages"/>
+        <item
+            android:id="@+id/pCare"
+            android:title="Personal Care"/>
+        <item
+            android:id="@+id/snacks"
+            android:title="Snacks"/>
+        <item
+            android:id="@+id/noodles"
+            android:title="Noodles"/>
+        <item
+            android:id="@+id/oil"
+            android:title="Oil"/>
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Logout"/>
     </group>
 </menu>
