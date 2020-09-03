@@ -1,5 +1,6 @@
 package com.dsc.grocerymanagement.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -138,9 +139,12 @@ class PhoneLoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        Toast.makeText(this@PhoneLoginActivity, "Login successful",
-                //Intent to main activity
-                Toast.LENGTH_SHORT).show()
+        if(user!=null) {
+            Toast.makeText(this@PhoneLoginActivity, "Login successful",
+                    Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@PhoneLoginActivity, DashboardActivity::class.java))//Intent to main activity
+            finish()
+        }
     }
 
     override fun onBackPressed() {
