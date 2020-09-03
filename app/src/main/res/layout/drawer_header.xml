@@ -6,27 +6,21 @@
     android:orientation="vertical">
     <ImageView
         android:layout_width="150dp"
-        android:layout_height="110dp"
+        android:layout_height="150dp"
         android:src="@drawable/mainlogo"
         android:padding="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"/>
     <TextView
-        android:id="@+id/txtUserName"
+        android:id="@+id/txtMobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Testing"
         android:textColor="#ffffff"
-        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
         android:textSize="18sp"
-        android:padding="10dp"/>
-    <TextView
-        android:id="@+id/txtUserEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:layout_marginStart="20dp"
-        android:text="Email"
-        android:textSize="18sp"
+        android:textStyle="bold"
         android:padding="10dp"/>
 
 </LinearLayout>
