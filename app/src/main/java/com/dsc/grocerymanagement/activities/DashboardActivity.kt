@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toolbar: Toolbar
+    var auth:FirebaseAuth?=null
     private lateinit var img: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +34,12 @@ class DashboardActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.NavigationView)
         navigationView.menu.getItem(0).isChecked = true
         toolbar = findViewById(R.id.Toolbar)
+        auth=FirebaseAuth.getInstance()
         setUpToolbar()
         setMenuIcons(navigationView.menu)
         val header = navigationView.getHeaderView(0)
+        val numberField:TextView=header.findViewById(R.id.txtMobile)
+        numberField.text= auth!!.currentUser!!.phoneNumber.toString()
         val actionBarDrawerToggle = ActionBarDrawerToggle(
                 this@DashboardActivity,
                 drawerLayout,
@@ -125,7 +130,7 @@ class DashboardActivity : AppCompatActivity() {
         confirmLogout.setTitle("Sure to Logout??")
                 .setMessage("You have to login again next time!!")
                 .setPositiveButton("Confirm") { _, _->
-                    FirebaseAuth.getInstance().signOut()
+                    auth!!.signOut()
                     startActivity(Intent(this@DashboardActivity,PhoneLoginActivity::class.java))
                     Toast.makeText(this@DashboardActivity, "You have been successfully Logged Out",
                             Toast.LENGTH_SHORT).show()
