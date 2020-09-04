@@ -14,4 +14,6 @@
     <string name="groc_mart">GROC MART</string>
     <string name="your_neighborhood_grocers">Your Neighborhood Grocers</string>
     <string name="welcome_to_ngroc_mart">WELCOME TO\nGROC MART</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

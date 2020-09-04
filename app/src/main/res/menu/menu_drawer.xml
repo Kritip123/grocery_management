@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/home"
+            android:id="@+id/hOme"
             android:icon="@drawable/home"
             android:title="Home"/>
         <item
@@ -11,6 +11,9 @@
         <item
             android:id="@+id/pulses"
             android:title="Pulses"/>
+        <!--<item
+            android:id="@+id/rice"
+            android:title="Rice"/>-->
         <item
             android:id="@+id/dairy"
             android:title="Dairy products"/>

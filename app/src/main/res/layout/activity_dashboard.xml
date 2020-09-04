@@ -26,13 +26,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_scrollFlags="scroll|enterAlways" />
     </com.google.android.material.appbar.AppBarLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/img"
-        android:layout_margin="150dp"
-        android:src="@drawable/mainlogo"/>
-
     <FrameLayout
         android:id="@+id/FrameLayout"
         android:layout_width="fill_parent"
