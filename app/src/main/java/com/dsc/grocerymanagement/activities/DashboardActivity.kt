@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment
 import com.dsc.grocerymanagement.R
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -48,10 +47,6 @@ class DashboardActivity : AppCompatActivity() {
         )
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
-        Picasso.get()
-                .load("https://firebasestorage.googleapis.com/v0/b/grocery-management-5eed8.appspot.com/o/Ashirvaad.jpg?alt=media&token=96b34bda-be16-441e-bb73-76efec708d37")
-                .error(R.drawable.mainlogo)
-                .into(img)
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logout->{
@@ -95,31 +90,31 @@ class DashboardActivity : AppCompatActivity() {
                     imageView.setImageResource(R.mipmap.spice)
                 }
                 2 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.pulses)
                 }
                 3 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.dairy)
                 }
                 4 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.home)
                 }
                 5 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.baby)
                 }
                 6 -> {
                     imageView.setImageResource(R.mipmap.spice)
                 }
                 7 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.personal)
                 }
                 8 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.snacks)
                 }
                 9 -> {
                     imageView.setImageResource(R.mipmap.spice)
                 }
                 10 -> {
-                    imageView.setImageResource(R.mipmap.spice)
+                    imageView.setImageResource(R.mipmap.oil)
                 }
             }
             item.actionView = imageView
