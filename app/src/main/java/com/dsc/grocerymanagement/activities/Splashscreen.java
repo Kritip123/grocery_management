@@ -1,7 +1,5 @@
 package com.dsc.grocerymanagement.activities;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.dsc.grocerymanagement.R;
-
 public class Splashscreen extends AppCompatActivity {
 
     private static int Splash_screen = 4000;
@@ -44,7 +40,7 @@ public class Splashscreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splashscreen.this, PhoneLoginActivity.class);
+                Intent intent=new Intent(Splashscreen.this,HomePageRecyclerViewActivity.class);
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(mainlogo, "logo_image");
                 pairs[1] = new Pair<View, String>(Appname, "logo_text");

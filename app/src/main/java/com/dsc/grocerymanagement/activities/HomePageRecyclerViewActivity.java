@@ -3,28 +3,22 @@ package com.dsc.grocerymanagement.activities;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.dsc.grocerymanagement.R;
-import com.dsc.grocerymanagement.activities.grocerymodel;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-//import com.squareup.picasso.Picasso;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
+import com.dsc.grocerymanagement.R;
+import com.dsc.grocerymanagement.model.grocerymodel;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class HomePageRecyclerViewActivity extends AppCompatActivity {
 
@@ -39,7 +33,7 @@ public class HomePageRecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage_recycleview);
 
-        recview = (RecyclerView) findViewById(R.id.firestore_list);
+        recview = findViewById(R.id.firestore_list);
        // searchView=(SearchView) findViewById(R.id.app_bar_search);
 
 
@@ -81,8 +75,8 @@ public class HomePageRecyclerViewActivity extends AppCompatActivity {
         recview.setAdapter(adapter);
     }
 
-    //Viewholder
-    private class GroceryViewHolder extends RecyclerView.ViewHolder{
+    //ViewHolder
+    private static class GroceryViewHolder extends RecyclerView.ViewHolder{
 
         ImageView img;
         TextView name,save,price,price0;
@@ -90,11 +84,11 @@ public class HomePageRecyclerViewActivity extends AppCompatActivity {
         public GroceryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img=(ImageView)itemView.findViewById(R.id.imageView);
-            name=(TextView)itemView.findViewById(R.id.nametext);
-            save=(TextView)itemView.findViewById(R.id.savetext);
-            price=(TextView)itemView.findViewById(R.id.pricetext);
-            price0=(TextView)itemView.findViewById(R.id.actualprice);
+            img= itemView.findViewById(R.id.imageView);
+            name= itemView.findViewById(R.id.nametext);
+            save= itemView.findViewById(R.id.savetext);
+            price= itemView.findViewById(R.id.pricetext);
+            price0= itemView.findViewById(R.id.actualprice);
         }
     }
 

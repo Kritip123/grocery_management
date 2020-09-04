@@ -142,7 +142,7 @@ class PhoneLoginActivity : AppCompatActivity() {
         if(user!=null) {
             Toast.makeText(this@PhoneLoginActivity, "Login successful",
                     Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this@PhoneLoginActivity, DashboardActivity::class.java))//Intent to main activity
+            startActivity(Intent(this@PhoneLoginActivity, HomePageRecyclerViewActivity::class.java))//Intent to main activity
             finish()
         }
     }
