@@ -40,7 +40,7 @@ public class Splashscreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(Splashscreen.this,HomePageRecyclerViewActivity.class);
+                Intent intent=new Intent(Splashscreen.this,PhoneLoginActivity.class);
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(mainlogo, "logo_image");
                 pairs[1] = new Pair<View, String>(Appname, "logo_text");
