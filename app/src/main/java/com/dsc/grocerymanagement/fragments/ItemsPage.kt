@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -24,12 +25,15 @@ import com.google.firebase.firestore.Query
 class ItemsPage : Fragment() {
     private lateinit var recview: RecyclerView
     lateinit var searchView: SearchView
+    lateinit var progressLayout: RelativeLayout
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var adapter: FirestoreRecyclerAdapter<*, *>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home_page, container, false)
         recview = view.findViewById(R.id.firestore_list)
+        progressLayout=view.findViewById(R.id.progressLayout)
+        progressLayout.visibility=View.VISIBLE
         // searchView=(SearchView) findViewById(R.id.app_bar_search);
         firebaseFirestore = FirebaseFirestore.getInstance()
         val collection: String = DashboardActivity().getCollect()
@@ -55,6 +59,7 @@ class ItemsPage : Fragment() {
                 holder.price0.text = model.price0
                 holder.price0.paintFlags = holder.price0.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 Glide.with(holder.img.context).load(model.img).into(holder.img)
+                progressLayout.visibility=View.GONE
             }
         }
         recview.setHasFixedSize(true)

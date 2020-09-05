@@ -14,6 +14,11 @@
     <string name="groc_mart">GROC MART</string>
     <string name="your_neighborhood_grocers">Your Neighborhood Grocers</string>
     <string name="welcome_to_ngroc_mart">WELCOME TO\nGROC MART</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check">Check</string>
+    <string name="enter_pincode_here">Enter Pincode Here</string>
+    <string name="enter_your_pincode_to_confirm_delivery_location">Enter your pincode to confirm delivery location:-</string>
+    <string name="not_eligible_for_this_pincode"><u>Not Eligible for this pincode</u></string>
+    <string name="offers">Offers</string>
+    <string name="are_you_a_merchant_nget_your_company_registered">Are you a merchant?\nGet your company registered!</string>
 </resources>

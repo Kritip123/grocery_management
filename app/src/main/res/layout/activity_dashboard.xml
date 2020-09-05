@@ -11,26 +11,90 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/Toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:layout_scrollFlags="scroll|enterAlways" />
-    </com.google.android.material.appbar.AppBarLayout>
-    <FrameLayout
-        android:id="@+id/FrameLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:background="#fff">
+
+                <TextView
+                    android:id="@+id/txtPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/enter_your_pincode_to_confirm_delivery_location"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etPin"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtPin"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:drawableLeft="@drawable/okay"
+                    android:hint="@string/enter_pincode_here"
+                    android:background="@drawable/text_boundary_background"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textColorHint="#9F000000"
+                    android:textColor="#000"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:padding="6dp"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/btnPin"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/txtPin"
+                    android:layout_toEndOf="@id/etPin"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/buttons"
+                    android:paddingVertical="5dp"
+                    android:text="@string/check"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txtPinResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/not_eligible_for_this_pincode"
+                    android:textAlignment="center"
+                    android:textColor="#FF0000"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:layout_below="@id/etPin"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <FrameLayout
+            android:id="@+id/FrameLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
