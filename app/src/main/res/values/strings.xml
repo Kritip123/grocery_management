@@ -21,4 +21,17 @@
     <string name="not_eligible_for_this_pincode"><u>Not Eligible for this pincode</u></string>
     <string name="offers">Offers</string>
     <string name="are_you_a_merchant_nget_your_company_registered">Are you a merchant?\nGet your company registered!</string>
+    <string name="home">Home</string>
+    <string name="spices">Spices</string>
+    <string name="pulses">Pulses</string>
+    <string name="dairy_products">Dairy products</string>
+    <string name="home_care">Home Care</string>
+    <string name="baby_care">Baby Care</string>
+    <string name="beverages">Beverages</string>
+    <string name="personal_care">Personal Care</string>
+    <string name="snacks">Snacks</string>
+    <string name="noodles">Noodles</string>
+    <string name="oil">Oil</string>
+    <string name="about_app">About App</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -22,7 +22,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class ItemsPage : Fragment() {
+class CategoriesPage : Fragment() {
     private lateinit var recview: RecyclerView
     lateinit var searchView: SearchView
     lateinit var progressLayout: RelativeLayout
@@ -30,7 +30,7 @@ class ItemsPage : Fragment() {
     private lateinit var adapter: FirestoreRecyclerAdapter<*, *>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_home_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         recview = view.findViewById(R.id.firestore_list)
         progressLayout=view.findViewById(R.id.progressLayout)
         progressLayout.visibility=View.VISIBLE

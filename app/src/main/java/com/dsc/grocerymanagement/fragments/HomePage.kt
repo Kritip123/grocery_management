@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dsc.grocerymanagement.R
-import com.dsc.grocerymanagement.activities.DashboardActivity
 import com.dsc.grocerymanagement.model.grocerymodel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -30,7 +29,7 @@ class HomePage : Fragment() {
     private lateinit var adapter: FirestoreRecyclerAdapter<*, *>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_home_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         progressLayout=view.findViewById(R.id.progressLayout)
         recview = view.findViewById(R.id.firestore_list)
         progressLayout.visibility=View.VISIBLE

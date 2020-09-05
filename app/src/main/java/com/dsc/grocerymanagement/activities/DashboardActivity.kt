@@ -3,7 +3,6 @@ package com.dsc.grocerymanagement.activities
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.Matrix
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,21 +29,23 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     lateinit var etPin: EditText
     lateinit var btnPin: Button
-    lateinit var txtPinResult:TextView
-    lateinit var img:ImageView
+    lateinit var txtPinResult: TextView
+    lateinit var img: ImageView
     private lateinit var toolbar: Toolbar
     private lateinit var auth: FirebaseAuth
+
     companion object {
         var collection: String = "as"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         drawerLayout = findViewById(R.id.DrawerLayout)
         navigationView = findViewById(R.id.NavigationView)
-        img=ImageView(this@DashboardActivity)
-        txtPinResult=findViewById(R.id.txtPinResult)
-        txtPinResult.visibility=View.GONE
+        img = ImageView(this@DashboardActivity)
+        txtPinResult = findViewById(R.id.txtPinResult)
+        txtPinResult.visibility = View.GONE
         etPin = findViewById(R.id.etPin)
         btnPin = findViewById(R.id.btnPin)
         navigationView.menu.getItem(0).isChecked = true
@@ -65,7 +66,7 @@ class DashboardActivity : AppCompatActivity() {
         actionBarDrawerToggle.syncState()
         openFragment(HomePage(), "All items", "grocery")
         img.setOnClickListener {
-            openFragment(OffersPage(),"Offers","null")
+            openFragment(OffersPage(), "Offers", "null")
         }
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -73,37 +74,40 @@ class DashboardActivity : AppCompatActivity() {
                     openFragment(HomePage(), "All items", "grocery")
                 }
                 R.id.spices -> {
-                    openFragment(ItemsPage(), "Spices", "spices")
+                    openFragment(CategoriesPage(), "Spices", "spices")
                 }
                 R.id.pulses -> {
-                    openFragment(ItemsPage(), "Pulses", "Pulse")
+                    openFragment(CategoriesPage(), "Pulses", "Pulse")
                 }
                 /*R.id.rice -> {
-                    openFragment(ItemsPage(), "Rice", "Rice")
+                    openFragment(CategoriesPage(), "Rice", "Rice")
                 }*/
                 R.id.dairy -> {
-                    openFragment(ItemsPage(), "Dairy Products", "dairy")
+                    openFragment(CategoriesPage(), "Dairy Products", "dairy")
                 }
                 R.id.hCare -> {
-                    openFragment(ItemsPage(), "Home Care", "homeCare")
+                    openFragment(CategoriesPage(), "Home Care", "homeCare")
                 }
                 R.id.bCare -> {
-                    openFragment(ItemsPage(), "Baby Care", "babyCare")
+                    openFragment(CategoriesPage(), "Baby Care", "babyCare")
                 }
                 R.id.beverages -> {
-                    openFragment(ItemsPage(), "Beverages", "beverages")
+                    openFragment(CategoriesPage(), "Beverages", "beverages")
                 }
                 R.id.pCare -> {
-                    openFragment(ItemsPage(), "Personal Care", "personal")
+                    openFragment(CategoriesPage(), "Personal Care", "personal")
                 }
                 R.id.snacks -> {
-                    openFragment(ItemsPage(), "Snacks", "snacks")
+                    openFragment(CategoriesPage(), "Snacks", "snacks")
                 }
                 R.id.noodles -> {
-                    openFragment(ItemsPage(), "Noodles", "noodles")
+                    openFragment(CategoriesPage(), "Noodles", "noodles")
                 }
                 R.id.oil -> {
-                    openFragment(ItemsPage(), "Oil", "oil")
+                    openFragment(CategoriesPage(), "Oil", "oil")
+                }
+                R.id.about -> {
+                    openFragment(AboutAppPage(),"About App","null")
                 }
                 R.id.logout -> {
                     logoutUser()
@@ -117,11 +121,11 @@ class DashboardActivity : AppCompatActivity() {
         btnPin.setOnClickListener {
             val pin = etPin.text.toString().trim()
             if (pin.length == 6) {
-                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.okay,0,0,0)
-                txtPinResult.visibility=View.GONE
+                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.okay, 0, 0, 0)
+                txtPinResult.visibility = View.GONE
             } else {
-                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancel,0,0,0)
-                txtPinResult.visibility=View.VISIBLE
+                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancel, 0, 0, 0)
+                txtPinResult.visibility = View.VISIBLE
             }
         }
     }
@@ -138,8 +142,8 @@ class DashboardActivity : AppCompatActivity() {
         if (id == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        if(id == R.id.offers){
-            openFragment(OffersPage(),"Offers","null")
+        if (id == R.id.offers) {
+            openFragment(OffersPage(), "Offers", "null")
         }
         return super.onOptionsItemSelected(item)
     }
@@ -250,9 +254,9 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         img.setImageResource(R.mipmap.offers)
-        val inflater:MenuInflater=menuInflater
-        inflater.inflate(R.menu.offers,menu)
-        menu?.findItem(R.id.offers)?.actionView=img
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.offers, menu)
+        menu?.findItem(R.id.offers)?.actionView = img
         return super.onCreateOptionsMenu(menu)
     }
 

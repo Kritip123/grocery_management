@@ -4,43 +4,47 @@
         <item
             android:id="@+id/hOme"
             android:icon="@drawable/home"
-            android:title="Home"/>
+            android:title="@string/home"/>
         <item
             android:id="@+id/spices"
-            android:title="Spices"/>
+            android:title="@string/spices"/>
         <item
             android:id="@+id/pulses"
-            android:title="Pulses"/>
+            android:title="@string/pulses"/>
         <!--<item
             android:id="@+id/rice"
             android:title="Rice"/>-->
         <item
             android:id="@+id/dairy"
-            android:title="Dairy products"/>
+            android:title="@string/dairy_products"/>
         <item
             android:id="@+id/hCare"
-            android:title="Home Care"/>
+            android:title="@string/home_care"/>
         <item
             android:id="@+id/bCare"
-            android:title="Baby Care"/>
+            android:title="@string/baby_care"/>
         <item
             android:id="@+id/beverages"
-            android:title="Beverages"/>
+            android:title="@string/beverages"/>
         <item
             android:id="@+id/pCare"
-            android:title="Personal Care"/>
+            android:title="@string/personal_care"/>
         <item
             android:id="@+id/snacks"
-            android:title="Snacks"/>
+            android:title="@string/snacks"/>
         <item
             android:id="@+id/noodles"
-            android:title="Noodles"/>
+            android:title="@string/noodles"/>
         <item
             android:id="@+id/oil"
-            android:title="Oil"/>
+            android:title="@string/oil"/>
+        <item
+            android:id="@+id/about"
+            android:title="@string/about_app"
+            android:icon="@drawable/about"/>
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
-            android:title="Logout"/>
+            android:title="@string/logout"/>
     </group>
 </menu>
