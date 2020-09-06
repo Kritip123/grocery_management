@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.dsc.grocerymanagement.R
 import com.dsc.grocerymanagement.fragments.*
+import com.dsc.grocerymanagement.util.IOnBackPressed
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -28,9 +29,9 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
     lateinit var etPin: EditText
-    lateinit var btnPin: Button
-    lateinit var txtPinResult: TextView
-    lateinit var img: ImageView
+    private lateinit var btnPin: Button
+    private lateinit var txtPinResult: TextView
+    private lateinit var img: ImageView
     private lateinit var toolbar: Toolbar
     private lateinit var auth: FirebaseAuth
 
@@ -107,7 +108,7 @@ class DashboardActivity : AppCompatActivity() {
                     openFragment(CategoriesPage(), "Oil", "oil")
                 }
                 R.id.about -> {
-                    openFragment(AboutAppPage(),"About App","null")
+                    openFragment(AboutAppPage(), "About App", "null")
                 }
                 R.id.logout -> {
                     logoutUser()
@@ -223,6 +224,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
         when (supportFragmentManager.findFragmentById(R.id.FrameLayout)) {
             !is HomePage -> {
                 openFragment(
@@ -230,7 +232,14 @@ class DashboardActivity : AppCompatActivity() {
                 )
                 navigationView.menu.getItem(0).isChecked = true
             }
-            else -> super.onBackPressed()
+            else -> {
+                val fragment=this.supportFragmentManager.findFragmentById(R.id.FrameLayout)
+                (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+                    if(it) {
+                        super.onBackPressed()
+                    }
+                }
+            }
         }
     }
 

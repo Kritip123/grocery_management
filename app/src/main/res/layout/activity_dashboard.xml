@@ -50,7 +50,6 @@
                     android:layout_below="@id/txtPin"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="2dp"
-                    android:drawableLeft="@drawable/okay"
                     android:hint="@string/enter_pincode_here"
                     android:background="@drawable/text_boundary_background"
                     android:inputType="number"

@@ -3,9 +3,7 @@ package com.dsc.grocerymanagement.fragments
 import android.content.Context
 import android.graphics.Paint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.SearchView
@@ -32,8 +30,8 @@ class CategoriesPage : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         recview = view.findViewById(R.id.firestore_list)
-        progressLayout=view.findViewById(R.id.progressLayout)
-        progressLayout.visibility=View.VISIBLE
+        progressLayout = view.findViewById(R.id.progressLayout)
+        progressLayout.visibility = View.VISIBLE
         // searchView=(SearchView) findViewById(R.id.app_bar_search);
         firebaseFirestore = FirebaseFirestore.getInstance()
         val collection: String = DashboardActivity().getCollect()
@@ -59,7 +57,7 @@ class CategoriesPage : Fragment() {
                 holder.price0.text = model.price0
                 holder.price0.paintFlags = holder.price0.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 Glide.with(holder.img.context).load(model.img).into(holder.img)
-                progressLayout.visibility=View.GONE
+                progressLayout.visibility = View.GONE
             }
         }
         recview.setHasFixedSize(true)
@@ -81,6 +79,10 @@ class CategoriesPage : Fragment() {
     override fun onStart() {
         super.onStart()
         adapter.startListening()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_menu,menu)
     }
 
     override fun onStop() {
