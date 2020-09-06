@@ -1,8 +1,13 @@
 package com.dsc.grocerymanagement.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.dsc.grocerymanagement.R
@@ -15,6 +20,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var mobileNumber: EditText
     private lateinit var enterOtpMobile: EditText
     private lateinit var btnLoginMobile: Button
+    private lateinit var register:TextView
     private lateinit var btnRequestOtp: Button
     private var storedVerificationId: String = "0"
     private var mAuth: FirebaseAuth? = null
@@ -25,6 +31,7 @@ class PhoneLoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_phone_login)
         mobileNumber = findViewById(R.id.MobileNumber)
         enterOtpMobile = findViewById(R.id.enterOtpMobile)
+        register=findViewById(R.id.register)
         btnLoginMobile = findViewById(R.id.btnLoginMobile)
         btnRequestOtp = findViewById(R.id.btnRequestOtp)
         btnLoginMobile.visibility = View.GONE
@@ -93,6 +100,11 @@ class PhoneLoginActivity : AppCompatActivity() {
                 enterOtpMobile.requestFocus()
             }
         }
+        register.setOnClickListener {
+            startActivity(Intent(this@PhoneLoginActivity,RegisterActivity::class.java))
+        }
+        mobileNumber.addTextChangedListener(textWatcher)
+        enterOtpMobile.addTextChangedListener(textWatcher)
     }
 
     override fun onStart() {
@@ -138,13 +150,40 @@ class PhoneLoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        Toast.makeText(this@PhoneLoginActivity, "Login successful",
-                //Intent to main activity
-                Toast.LENGTH_SHORT).show()
+        if (user != null) {
+            Toast.makeText(this@PhoneLoginActivity, "Login successful",
+                    Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@PhoneLoginActivity, DashboardActivity::class.java))//Intent to main activity
+            finish()
+        }
     }
 
     override fun onBackPressed() {
         finishAffinity()
         super.onBackPressed()
+    }
+    private val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            //println("watcher: length ${s!!.length}")
+            //code to hide keyboard
+            if (s?.length == 6&&currentFocus==enterOtpMobile) {
+                enterOtpMobile.hideKeyboard()
+            }
+            if (s?.length == 10&&currentFocus==mobileNumber) {
+                mobileNumber.hideKeyboard()
+            }
+        }
+    }
+
+    fun EditText.hideKeyboard(): Boolean {
+        return (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(windowToken, 0)
     }
 }

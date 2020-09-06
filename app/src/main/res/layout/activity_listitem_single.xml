@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nametext"
+            android:text="This is Demo Name"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="#000"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearlayout"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_below="@+id/nametext"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/pricetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nametext"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_weight="0"
+                android:text="Amount"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/actualprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nametext"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/pricetext"
+                android:layout_weight="1"
+                android:textStyle="italic"
+                android:text="Actual"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/savetext"
+            android:text="This is Price"
+            android:textStyle="italic"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_below="@+id/linearlayout"
+            android:layout_marginLeft="10dp"/>
+
+    </RelativeLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
