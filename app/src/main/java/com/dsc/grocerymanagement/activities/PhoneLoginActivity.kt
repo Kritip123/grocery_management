@@ -50,10 +50,7 @@ class PhoneLoginActivity : AppCompatActivity() {
                         object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
                             override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) { //If user is automatically verified by system
-                                /*Toast.makeText(this@PhoneLoginActivity, "Automatic Verification initiated!!",
-                                        Toast.LENGTH_SHORT).show()*/
                                 signInWithPhoneAuthCredential(phoneAuthCredential) //Logging in user as he/she is verified
-                                //println("cred ${phoneAuthCredential.smsCode}")
                             }
 
                             override fun onVerificationFailed(e: FirebaseException) {
@@ -129,8 +126,6 @@ class PhoneLoginActivity : AppCompatActivity() {
                         task.isSuccessful -> {
                             // Sign-In successful either direct or through OTP.
                             //Intent to next activity
-                            /*Toast.makeText(this@PhoneLoginActivity, "Logged In successfully",
-                                    Toast.LENGTH_SHORT).show()*/
                             val user = task.result?.user //Details of user which has currently logged-In
                             updateUI(user) //This is to change the activity upon login
                             //println("users $user")

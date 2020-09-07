@@ -214,6 +214,7 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 .setNegativeButton("Cancel") { _, _ ->
                     navigationView.menu.getItem(0).isChecked = true
+                    openFragment(HomePage(), "All items","grocery")
                 }
                 .create()
                 .show()

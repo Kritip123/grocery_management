@@ -27,15 +27,15 @@
             android:textStyle="bold"
             android:textSize="25sp"
             android:textColor="#000"
-            android:layout_toRightOf="@+id/imageView"
-            android:layout_marginLeft="10dp"/>
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_marginStart="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/linearlayout"
             android:orientation="horizontal"
-            android:layout_toRightOf="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView"
             android:layout_below="@+id/nametext"
             android:weightSum="2">
 
@@ -43,9 +43,7 @@
                 android:id="@+id/pricetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nametext"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginStart="10dp"
                 android:layout_weight="0"
                 android:text="Amount"
                 android:textColor="#000"
@@ -56,9 +54,7 @@
                 android:id="@+id/actualprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nametext"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@+id/pricetext"
+                android:layout_marginStart="15dp"
                 android:layout_weight="1"
                 android:textStyle="italic"
                 android:text="Actual"
@@ -76,9 +72,9 @@
             android:textStyle="italic"
             android:textSize="20sp"
             android:textColor="#000"
-            android:layout_toRightOf="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView"
             android:layout_below="@+id/linearlayout"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginStart="10dp"/>
 
     </RelativeLayout>
 

@@ -5,16 +5,14 @@ import android.content.Context
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.SearchView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dsc.grocerymanagement.R
-import com.dsc.grocerymanagement.model.grocerymodel
+import com.dsc.grocerymanagement.adapter.HomeRecyclerAdapter
+import com.dsc.grocerymanagement.model.groceryModel
 import com.dsc.grocerymanagement.util.IOnBackPressed
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -22,11 +20,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
 
-class HomePage : Fragment(),IOnBackPressed {
+class HomePage : Fragment(), IOnBackPressed {
     private lateinit var recview: RecyclerView
-    lateinit var searchView: SearchView
+    private lateinit var searchView: SearchView
     lateinit var progressLayout: RelativeLayout
+    private lateinit var recyclerAdapter: HomeRecyclerAdapter
     private lateinit var firebaseFirestore: FirebaseFirestore
+    private var size = 0
+    private val groceryArrayList = arrayListOf<groceryModel>()
     private lateinit var adapter: FirestoreRecyclerAdapter<*, *>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,31 +35,54 @@ class HomePage : Fragment(),IOnBackPressed {
         setHasOptionsMenu(true)
         progressLayout = view.findViewById(R.id.progressLayout)
         recview = view.findViewById(R.id.firestore_list)
-        progressLayout.visibility = View.VISIBLE
+        progressLayout.visibility = View.GONE
         // searchView=(SearchView) findViewById(R.id.app_bar_search);
         firebaseFirestore = FirebaseFirestore.getInstance()
         //Query
+        firebaseFirestore.collection("grocery").get().addOnSuccessListener { querySnapshot ->
+            if (querySnapshot.isEmpty) {
+
+            } else {
+                val types: List<groceryModel> = querySnapshot.toObjects(groceryModel::class.java)
+                // Add all to your list
+
+                groceryArrayList.addAll(types)
+                size = groceryArrayList.size
+                //println("sizing $size")
+                //println("check1435 ${groceryArrayList[0].name}")
+            }
+
+        }.addOnFailureListener {
+            Toast.makeText(activity as Context, "Error getting data!!!", Toast.LENGTH_SHORT).show()
+        }
+//        println("check ${mArrayList[0].name}")
         val query: Query = FirebaseFirestore.getInstance()
                 .collection("grocery")
+        /*Handler().postDelayed({
+            println("size $size")
+            recyclerAdapter=HomeRecyclerAdapter(groceryArrayList)
+            recview.layoutManager = LinearLayoutManager(activity as Context)
+            recview.adapter = recyclerAdapter
+            recyclerAdapter.notifyDataSetChanged()
+        }, 3000)*/
+        recview.setHasFixedSize(true)
         getList(query)
-        //RecyclerOption
-        //RecyclerOption
 
         // Inflate the layout for this fragment
         return view
     }
 
     private fun getList(query: Query) {
-        val options = FirestoreRecyclerOptions.Builder<grocerymodel>()
-                .setQuery(query, grocerymodel::class.java)
+        val options = FirestoreRecyclerOptions.Builder<groceryModel>()
+                .setQuery(query, groceryModel::class.java)
                 .build()
-        adapter = object : FirestoreRecyclerAdapter<grocerymodel, GroceryViewHolder>(options) {
+        adapter = object : FirestoreRecyclerAdapter<groceryModel, GroceryViewHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryViewHolder {
                 val view2 = LayoutInflater.from(parent.context).inflate(R.layout.activity_listitem_single, parent, false)
                 return GroceryViewHolder(view2)
             }
 
-            override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: grocerymodel) {
+            override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: groceryModel) {
                 holder.name.text = model.name
                 holder.price.text = model.price
                 holder.save.text = model.save
@@ -108,6 +132,7 @@ class HomePage : Fragment(),IOnBackPressed {
 
             override fun onQueryTextChange(s: String): Boolean {
                 if (s.trim { it <= ' ' }.isNotEmpty()) {
+                    adapter.stopListening()
                     processSearch(s)
                 }
                 return false
@@ -126,25 +151,43 @@ class HomePage : Fragment(),IOnBackPressed {
     private fun processSearch(s: String) {
         var s1 = s
         if (s.isNotEmpty())
-            s1 = s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1).toLowerCase(Locale.ROOT)
-        //listUsers = new ArrayList<>();
-        val query = FirebaseFirestore.getInstance()
+            //s1 = s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1).toLowerCase(Locale.ROOT)
+            s1=s.toLowerCase(Locale.ROOT)
+        //println("lastly ${groceryArrayList.size}")
+        val grocery = arrayListOf<groceryModel>()
+        grocery.clear()
+        for (i in 0 until groceryArrayList.size) {
+            if (groceryArrayList[i].name.toLowerCase(Locale.ROOT).contains(s1)) {
+                val groceryObject = groceryModel(
+                        groceryArrayList[i].name,
+                        groceryArrayList[i].save,
+                        groceryArrayList[i].price,
+                        groceryArrayList[i].img,
+                        groceryArrayList[i].price0)
+                grocery.add(groceryObject)
+            }
+                recyclerAdapter = HomeRecyclerAdapter(grocery)
+                recview.layoutManager = LinearLayoutManager(activity as Context)
+                recview.adapter = recyclerAdapter
+                recyclerAdapter.notifyDataSetChanged()
+        }
+        /*val query = FirebaseFirestore.getInstance()
                 .collection("grocery").orderBy("name").startAt(s1).endAt(s1 + "\uf8ff")
         getList(query)
         adapter.startListening()
-        recview.adapter = adapter
+        recview.adapter = adapter*/
     }
 
     override fun onBackPressed(): Boolean {
-        return if(!searchView.isIconified){
-            searchView.isIconified=true
+        return if (!searchView.isIconified) {
+            searchView.isIconified = true
             searchView.onActionViewCollapsed()
             val query: Query = FirebaseFirestore.getInstance()
                     .collection("grocery")
             getList(query)
             adapter.startListening()
             true
-        }else{
+        } else {
             false
         }
     }
