@@ -1,38 +1,31 @@
 package com.dsc.grocerymanagement.model;
 
 
-public class grocerymodel {
+public class groceryModel {
     String name;
     String save;
     String price;
     String img;
     String price0;
 
-    grocerymodel() {
+    public groceryModel() {
 
     }
 
-    public grocerymodel(String name, String save, String price, String image) {
+    public groceryModel(String name, String save, String price, String image, String price0) {
         this.name = name;
         this.save = save;
         this.price = price;
         this.img = image;
+        this.price0 = price0;
     }
 
     public String getPrice0() {
         return price0;
     }
 
-    public void setPrice0(String price0) {
-        this.price0 = price0;
-    }
-
     public String getImg() {
         return img;
-    }
-
-    public void setImg(String image) {
-        this.img = image;
     }
 
     public String getName() {
@@ -47,16 +40,8 @@ public class grocerymodel {
         return save;
     }
 
-    public void setSave(String save) {
-        this.save = save;
-    }
-
     public String getPrice() {
         return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
 }

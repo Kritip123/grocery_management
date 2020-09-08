@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dsc.grocerymanagement.R
 import com.dsc.grocerymanagement.activities.DashboardActivity
-import com.dsc.grocerymanagement.model.grocerymodel
+import com.dsc.grocerymanagement.model.groceryModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,10 +42,10 @@ class CategoriesPage : Fragment() {
                 .collection(collection)
         //RecyclerOption
         //RecyclerOption
-        val options = FirestoreRecyclerOptions.Builder<grocerymodel>()
-                .setQuery(query, grocerymodel::class.java)
+        val options = FirestoreRecyclerOptions.Builder<groceryModel>()
+                .setQuery(query, groceryModel::class.java)
                 .build()
-        adapter = object : FirestoreRecyclerAdapter<grocerymodel, GroceryViewHolder>(options) {
+        adapter = object : FirestoreRecyclerAdapter<groceryModel, GroceryViewHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryViewHolder {
                 val view2 = LayoutInflater.from(parent.context).inflate(R.layout.activity_listitem_single, parent, false)
                 return GroceryViewHolder(view2)
