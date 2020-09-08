@@ -214,7 +214,7 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 .setNegativeButton("Cancel") { _, _ ->
                     navigationView.menu.getItem(0).isChecked = true
-                    openFragment(HomePage(), "All items","grocery")
+                    openFragment(HomePage(), "All items", "grocery")
                 }
                 .create()
                 .show()
@@ -225,18 +225,19 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.FrameLayout)
+        (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+            if (it) {
 
-        when (supportFragmentManager.findFragmentById(R.id.FrameLayout)) {
-            !is HomePage -> {
-                openFragment(
-                        HomePage(), "All items", "grocery"
-                )
-                navigationView.menu.getItem(0).isChecked = true
-            }
-            else -> {
-                val fragment=this.supportFragmentManager.findFragmentById(R.id.FrameLayout)
-                (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
-                    if(it) {
+                when (supportFragmentManager.findFragmentById(R.id.FrameLayout)) {
+                    !is HomePage -> {
+                        openFragment(
+                                HomePage(), "All items", "grocery"
+                        )
+                        navigationView.menu.getItem(0).isChecked = true
+                    }
+                    else -> {
+
                         super.onBackPressed()
                     }
                 }

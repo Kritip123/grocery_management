@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+            android:theme="@style/ThemeOverlay.AppCompat.Light">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/Toolbar"
@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_border"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:titleTextColor="#fff"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_scrollFlags="scroll|enterAlways" />
 
             <RelativeLayout

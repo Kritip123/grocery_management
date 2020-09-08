@@ -34,7 +34,7 @@ class HomeRecyclerAdapter(private val itemList: ArrayList<groceryModel>) :
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val grocery = itemList[position]
-        println("grocey ${grocery.name}")
+        //println("grocey ${grocery.name}")
         holder.name.text = grocery.name
         holder.price.text = grocery.price
         holder.save.text = grocery.save

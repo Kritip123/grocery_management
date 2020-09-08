@@ -129,6 +129,8 @@ class HomePage : Fragment(), IOnBackPressed {
         inflater.inflate(R.menu.search_menu, menu)
         val item = menu.findItem(R.id.app_bar_search)
         searchView = item.actionView as SearchView
+        //val searchIcon:ImageView=searchView.findViewById(android.support.v4.appcompat.R.id.search_mag_icon)
+        //searchIcon.setColorFilter(resources.getColor(R.color.black),android.graphics.PorterDuff.Mode.SRC_IN)
         val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
