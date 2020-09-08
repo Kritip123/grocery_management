@@ -87,10 +87,8 @@ class HomePage : Fragment(), IOnBackPressed {
                 return GroceryViewHolder(view2)
             }
 
-            override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: grocerymodel) {
-                holder.container.animation= AnimationUtils.loadAnimation(activity as Context,R.anim.fade)
-              
             override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: groceryModel) {
+                holder.container.animation = AnimationUtils.loadAnimation(activity as Context, R.anim.fade)
                 holder.name.text = model.name
                 holder.price.text = model.price
                 holder.save.text = model.save
@@ -100,14 +98,14 @@ class HomePage : Fragment(), IOnBackPressed {
                 progressLayout.visibility = View.GONE
             }
         }
-        adapter.notifyDataSetChanged()
-        recview.setHasFixedSize(true)
-        recview.layoutManager = LinearLayoutManager(activity as Context)
-        recview.adapter = adapter
+            adapter.notifyDataSetChanged()
+            recview.setHasFixedSize(true)
+            recview.layoutManager = LinearLayoutManager(activity as Context)
+            recview.adapter = adapter
     }
 
     private class GroceryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val container: RelativeLayout=itemView.findViewById(R.id.container)
+        val container: RelativeLayout = itemView.findViewById(R.id.container)
         val img: ImageView = itemView.findViewById(R.id.imageView)
         val name: TextView = itemView.findViewById(R.id.nametext)
         val save: TextView = itemView.findViewById(R.id.savetext)
@@ -162,8 +160,8 @@ class HomePage : Fragment(), IOnBackPressed {
     private fun processSearch(s: String) {
         var s1 = s
         if (s.isNotEmpty())
-            //s1 = s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1).toLowerCase(Locale.ROOT)
-            s1=s.toLowerCase(Locale.ROOT)
+        //s1 = s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1).toLowerCase(Locale.ROOT)
+            s1 = s.toLowerCase(Locale.ROOT)
         //println("lastly ${groceryArrayList.size}")
         val grocery = arrayListOf<groceryModel>()
         grocery.clear()
@@ -177,16 +175,16 @@ class HomePage : Fragment(), IOnBackPressed {
                         groceryArrayList[i].price0)
                 grocery.add(groceryObject)
             }
-                recyclerAdapter = HomeRecyclerAdapter(grocery)
-                recview.layoutManager = LinearLayoutManager(activity as Context)
-                recview.adapter = recyclerAdapter
-                recyclerAdapter.notifyDataSetChanged()
+            recyclerAdapter = HomeRecyclerAdapter(grocery)
+            recview.layoutManager = LinearLayoutManager(activity as Context)
+            recview.adapter = recyclerAdapter
+            recyclerAdapter.notifyDataSetChanged()
         }
         /*val query = FirebaseFirestore.getInstance()
-                .collection("grocery").orderBy("name").startAt(s1).endAt(s1 + "\uf8ff")
-        getList(query)
-        adapter.startListening()
-        recview.adapter = adapter*/
+            .collection("grocery").orderBy("name").startAt(s1).endAt(s1 + "\uf8ff")
+    getList(query)
+    adapter.startListening()
+    recview.adapter = adapter*/
     }
 
     override fun onBackPressed(): Boolean {
@@ -202,5 +200,4 @@ class HomePage : Fragment(), IOnBackPressed {
             false
         }
     }
-
 }
