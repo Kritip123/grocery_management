@@ -1,88 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
     android:elevation="5dp"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="10dp"
+    android:layout_margin="6dp"
+    android:background="#ffffff"
+    app:cardUseCompatPadding="false">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/container"
         android:padding="15dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardImg"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="6dp"
+            android:background="#ffffff"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/nametext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nametext"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/cardImg"
             android:text="This is Demo Name"
-            android:textStyle="bold"
-            android:textSize="25sp"
             android:textColor="#000"
-            android:layout_toRightOf="@+id/imageView"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearlayout"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/imageView"
             android:layout_below="@+id/nametext"
+            android:layout_toEndOf="@+id/cardImg"
+            android:orientation="horizontal"
             android:weightSum="2">
 
             <TextView
                 android:id="@+id/pricetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nametext"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginStart="10dp"
                 android:layout_weight="0"
                 android:text="Amount"
                 android:textColor="#000"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/actualprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nametext"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@+id/pricetext"
+                android:layout_marginStart="15dp"
                 android:layout_weight="1"
-                android:textStyle="italic"
                 android:text="Actual"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="17sp"
+                android:textStyle="italic" />
 
         </LinearLayout>
 
 
         <TextView
+            android:id="@+id/savetext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/savetext"
-            android:text="This is Price"
-            android:textStyle="italic"
-            android:textSize="20sp"
-            android:textColor="#000"
-            android:layout_toRightOf="@+id/imageView"
             android:layout_below="@+id/linearlayout"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/cardImg"
+            android:text="This is Price"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="italic" />
 
     </RelativeLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>

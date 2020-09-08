@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.SearchView
@@ -51,6 +52,7 @@ class CategoriesPage : Fragment() {
             }
 
             override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: grocerymodel) {
+                holder.container.animation=AnimationUtils.loadAnimation(activity as Context,R.anim.fade)
                 holder.name.text = model.name
                 holder.price.text = model.price
                 holder.save.text = model.save
@@ -69,6 +71,7 @@ class CategoriesPage : Fragment() {
     }
 
     private class GroceryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val container: RelativeLayout=itemView.findViewById(R.id.container)
         val img: ImageView = itemView.findViewById(R.id.imageView)
         val name: TextView = itemView.findViewById(R.id.nametext)
         val save: TextView = itemView.findViewById(R.id.savetext)
