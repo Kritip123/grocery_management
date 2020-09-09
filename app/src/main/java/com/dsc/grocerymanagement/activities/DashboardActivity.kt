@@ -30,6 +30,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     lateinit var etPin: EditText
     private lateinit var btnPin: Button
+    private lateinit var offer:ImageView
     private lateinit var txtPinResult: TextView
     private lateinit var img: ImageView
     private lateinit var toolbar: Toolbar
@@ -44,9 +45,10 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
         drawerLayout = findViewById(R.id.DrawerLayout)
         navigationView = findViewById(R.id.NavigationView)
-        img = ImageView(this@DashboardActivity)
+        //img = ImageView(this@DashboardActivity)
         txtPinResult = findViewById(R.id.txtPinResult)
         txtPinResult.visibility = View.GONE
+        offer=findViewById(R.id.offers)
         etPin = findViewById(R.id.etPin)
         btnPin = findViewById(R.id.btnPin)
         navigationView.menu.getItem(0).isChecked = true
@@ -66,7 +68,10 @@ class DashboardActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         openFragment(HomePage(), "All items", "grocery")
-        img.setOnClickListener {
+        /*img.setOnClickListener {
+            openFragment(OffersPage(), "Offers", "null")
+        }*/
+        offer.setOnClickListener {
             openFragment(OffersPage(), "Offers", "null")
         }
         navigationView.setNavigationItemSelectedListener {
@@ -143,9 +148,9 @@ class DashboardActivity : AppCompatActivity() {
         if (id == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        if (id == R.id.offers) {
+        /*if (id == R.id.offers) {
             openFragment(OffersPage(), "Offers", "null")
-        }
+        }*/
         return super.onOptionsItemSelected(item)
     }
 
@@ -237,11 +242,11 @@ class DashboardActivity : AppCompatActivity() {
                         navigationView.menu.getItem(0).isChecked = true
                     }
                     else -> {
-
                         super.onBackPressed()
                     }
                 }
             }
+
         }
     }
 
@@ -255,21 +260,19 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            //println("watcher: length ${s!!.length}")
             //code to hide keyboard
             if (s?.length == 6) {
+                btnPin.performClick()
                 etPin.hideKeyboard()
             }
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        img.setImageResource(R.mipmap.offers)
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.offers, menu)
-        menu?.findItem(R.id.offers)?.actionView = img
         return super.onCreateOptionsMenu(menu)
-    }
+    }*/
 
     fun EditText.hideKeyboard(): Boolean {
         return (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(windowToken, 0)

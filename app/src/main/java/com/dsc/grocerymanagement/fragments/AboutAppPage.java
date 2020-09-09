@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dsc.grocerymanagement.R;
+import com.dsc.grocerymanagement.util.IOnBackPressed;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AboutAppPage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AboutAppPage extends Fragment {
+public class AboutAppPage extends Fragment implements IOnBackPressed {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +63,10 @@ public class AboutAppPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_about_app_page, container, false);
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 }

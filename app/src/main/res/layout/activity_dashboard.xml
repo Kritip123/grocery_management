@@ -14,9 +14,17 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
+            android:background="#fff"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:theme="@style/ThemeOverlay.AppCompat.Light">
-
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:background="#000"
+                app:cardCornerRadius="15dp">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/Toolbar"
                 android:layout_width="match_parent"
@@ -26,32 +34,20 @@
                 app:titleTextColor="#fff"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_scrollFlags="scroll|enterAlways" />
+            </androidx.cardview.widget.CardView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
                 android:background="#fff">
-
-                <TextView
-                    android:id="@+id/txtPin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/enter_your_pincode_to_confirm_delivery_location"
-                    android:textAlignment="center"
-
-                    android:textColor="#2475B0"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etPin"
                     android:layout_width="185dp"
                     android:layout_height="39dp"
-                    android:layout_below="@id/txtPin"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/text_boundary_background"
                     android:hint="@string/enter_pincode_here"
@@ -64,16 +60,24 @@
                     android:textColorHint="#9F000000"
                     android:textSize="19sp"
                     android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/offers"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/button_border"
+                    android:layout_toEndOf="@id/etPin"
+                    android:layout_marginStart="40dp"
+                    android:src="@drawable/offer"/>
 
                 <Button
                     android:id="@+id/btnPin"
                     android:layout_width="205dp"
                     android:layout_height="41dp"
-                    android:layout_below="@id/txtPin"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-1dp"
                     android:layout_toEndOf="@id/etPin"
+                    android:visibility="gone"
                     android:background="@drawable/button_border"
                     android:paddingVertical="5dp"
                     android:text="@string/check"

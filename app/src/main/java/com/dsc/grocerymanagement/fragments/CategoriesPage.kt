@@ -39,6 +39,7 @@ class CategoriesPage : Fragment(),IOnBackPressed {
         val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         recview = view.findViewById(R.id.firestore_list)
         setHasOptionsMenu(true)
+        view.findViewById<SearchView>(R.id.search).visibility=View.GONE
         progressLayout = view.findViewById(R.id.progressLayout)
         progressLayout.visibility = View.VISIBLE
         // searchView=(SearchView) findViewById(R.id.app_bar_search);

@@ -64,7 +64,7 @@ class PhoneLoginActivity : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT).show()
                                     }
                                     else -> {
-                                        Toast.makeText(this@PhoneLoginActivity, "Some error occurred",
+                                        Toast.makeText(this@PhoneLoginActivity, e.toString(),
                                                 Toast.LENGTH_SHORT).show()
                                     }
                                 }
