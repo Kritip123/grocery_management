@@ -28,10 +28,12 @@ import java.util.*
 class HomePage : Fragment(), IOnBackPressed {
     private lateinit var recview: RecyclerView
     private lateinit var searchView: SearchView
+    private lateinit var search:SearchView
     lateinit var progressLayout: RelativeLayout
     private lateinit var recyclerAdapter: HomeRecyclerAdapter
     private lateinit var firebaseFirestore: FirebaseFirestore
     private var size = 0
+    private var searchFlag=1
     private val groceryArrayList = arrayListOf<groceryModel>()
     private lateinit var adapter: FirestoreRecyclerAdapter<*, *>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +41,11 @@ class HomePage : Fragment(), IOnBackPressed {
         val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         setHasOptionsMenu(true)
         progressLayout = view.findViewById(R.id.progressLayout)
+        search=view.findViewById(R.id.search)
+        search.isIconified=false
         recview = view.findViewById(R.id.firestore_list)
         progressLayout.visibility = View.GONE
-        // searchView=(SearchView) findViewById(R.id.app_bar_search);
+        search()
         firebaseFirestore = FirebaseFirestore.getInstance()
         //Query
         firebaseFirestore.collection("grocery").get().addOnSuccessListener { querySnapshot ->
@@ -53,14 +57,11 @@ class HomePage : Fragment(), IOnBackPressed {
 
                 groceryArrayList.addAll(types)
                 size = groceryArrayList.size
-                //println("sizing $size")
-                //println("check1435 ${groceryArrayList[0].name}")
             }
 
         }.addOnFailureListener {
             Toast.makeText(activity as Context, "Error getting data!!!", Toast.LENGTH_SHORT).show()
         }
-//        println("check ${mArrayList[0].name}")
         val query: Query = FirebaseFirestore.getInstance()
                 .collection("grocery")
         /*Handler().postDelayed({
@@ -87,10 +88,8 @@ class HomePage : Fragment(), IOnBackPressed {
                 return GroceryViewHolder(view2)
             }
 
-            override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: grocerymodel) {
-                holder.container.animation= AnimationUtils.loadAnimation(activity as Context,R.anim.fade)
-              
             override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: groceryModel) {
+                holder.container.animation = AnimationUtils.loadAnimation(activity as Context, R.anim.fade)
                 holder.name.text = model.name
                 holder.price.text = model.price
                 holder.save.text = model.save
@@ -100,14 +99,14 @@ class HomePage : Fragment(), IOnBackPressed {
                 progressLayout.visibility = View.GONE
             }
         }
-        adapter.notifyDataSetChanged()
-        recview.setHasFixedSize(true)
-        recview.layoutManager = LinearLayoutManager(activity as Context)
-        recview.adapter = adapter
+            adapter.notifyDataSetChanged()
+            recview.setHasFixedSize(true)
+            recview.layoutManager = LinearLayoutManager(activity as Context)
+            recview.adapter = adapter
     }
 
     private class GroceryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val container: RelativeLayout=itemView.findViewById(R.id.container)
+        val container: RelativeLayout = itemView.findViewById(R.id.container)
         val img: ImageView = itemView.findViewById(R.id.imageView)
         val name: TextView = itemView.findViewById(R.id.nametext)
         val save: TextView = itemView.findViewById(R.id.savetext)
@@ -125,44 +124,10 @@ class HomePage : Fragment(), IOnBackPressed {
         adapter.stopListening()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_menu, menu)
-        val item = menu.findItem(R.id.app_bar_search)
-        searchView = item.actionView as SearchView
-        val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(s: String): Boolean {
-                if (s.trim { it <= ' ' }.isNotEmpty()) {
-                    processSearch(s)
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(s: String): Boolean {
-                if (s.trim { it <= ' ' }.isNotEmpty()) {
-                    adapter.stopListening()
-                    processSearch(s)
-                }
-                return false
-            }
-        })
-        searchView.setOnCloseListener {
-
-            val query: Query = FirebaseFirestore.getInstance()
-                    .collection("grocery")
-            getList(query)
-            adapter.startListening()
-            false
-        }
-    }
-
     private fun processSearch(s: String) {
         var s1 = s
         if (s.isNotEmpty())
-            //s1 = s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1).toLowerCase(Locale.ROOT)
-            s1=s.toLowerCase(Locale.ROOT)
-        //println("lastly ${groceryArrayList.size}")
+            s1 = s.toLowerCase(Locale.ROOT)
         val grocery = arrayListOf<groceryModel>()
         grocery.clear()
         for (i in 0 until groceryArrayList.size) {
@@ -175,22 +140,50 @@ class HomePage : Fragment(), IOnBackPressed {
                         groceryArrayList[i].price0)
                 grocery.add(groceryObject)
             }
-                recyclerAdapter = HomeRecyclerAdapter(grocery)
-                recview.layoutManager = LinearLayoutManager(activity as Context)
-                recview.adapter = recyclerAdapter
-                recyclerAdapter.notifyDataSetChanged()
+            recyclerAdapter = HomeRecyclerAdapter(grocery)
+            recview.layoutManager = LinearLayoutManager(activity as Context)
+            recview.adapter = recyclerAdapter
+            recyclerAdapter.notifyDataSetChanged()
         }
-        /*val query = FirebaseFirestore.getInstance()
-                .collection("grocery").orderBy("name").startAt(s1).endAt(s1 + "\uf8ff")
-        getList(query)
-        adapter.startListening()
-        recview.adapter = adapter*/
+    }
+    private fun search(){
+        val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        search.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(s: String): Boolean {
+                if (s.trim { it <= ' ' }.isNotEmpty()) {
+                    adapter.stopListening()
+                    searchFlag=0
+                    processSearch(s)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+                if (s.trim { it <= ' ' }.isNotEmpty()) {
+                    adapter.stopListening()
+                    searchFlag=0
+                    processSearch(s)
+                }
+                return false
+            }
+        })
+        search.setOnCloseListener {
+            searchFlag=1
+            val query: Query = FirebaseFirestore.getInstance()
+                    .collection("grocery")
+            getList(query)
+            adapter.startListening()
+            false
+        }
     }
 
     override fun onBackPressed(): Boolean {
-        return if (!searchView.isIconified) {
-            searchView.isIconified = true
-            searchView.onActionViewCollapsed()
+        //return if (!search.isIconified) {
+        return if(searchFlag==0){
+            searchFlag=1
+            //search.isIconified = true
+            search.onActionViewCollapsed()
             val query: Query = FirebaseFirestore.getInstance()
                     .collection("grocery")
             getList(query)
@@ -200,5 +193,4 @@ class HomePage : Fragment(), IOnBackPressed {
             false
         }
     }
-
 }
