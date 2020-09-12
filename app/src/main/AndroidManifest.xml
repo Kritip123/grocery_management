@@ -14,6 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.OfferActivity"
+            android:label="Offer Details"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activities.DashboardActivity"></activity>
         <activity android:name=".activities.RegisterActivity" />
         <activity
             android:name=".activities.DashboardActivity"
