@@ -43,6 +43,7 @@ class HomePage : Fragment(), IOnBackPressed {
         progressLayout = view.findViewById(R.id.progressLayout)
         search=view.findViewById(R.id.search)
         search.isIconified=false
+        search.clearFocus()
         recview = view.findViewById(R.id.firestore_list)
         progressLayout.visibility = View.GONE
         search()
