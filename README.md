@@ -1,12 +1,15 @@
-# grocery_management
+# Groc Mart
 
 Your Neighbourhood Grocers!
 
 Purchasing groceries from home made easy
 
 ## Preview
-
 //visuals go here
+
+![groc](https://user-images.githubusercontent.com/62319328/93020331-00aa2080-f5fa-11ea-912e-220791ea243c.png)
+
+
 
 ## Details
 
