@@ -5,16 +5,16 @@ public class offermodel {
     String offername;
     String offerimg;
     String offertype;
-    String c1,offerdesc,offerimage,c2,c3;
+    String c1, offerdesc, offerimage, c2, c3;
 
     public offermodel() {
 
     }
 
     public offermodel(String offername, String offerimg, String offertype) {
-        this.offername=offername;
-        this.offerimg=offerimg;
-        this.offertype=offertype;
+        this.offername = offername;
+        this.offerimg = offerimg;
+        this.offertype = offertype;
     }
 
     public String getC1() {
