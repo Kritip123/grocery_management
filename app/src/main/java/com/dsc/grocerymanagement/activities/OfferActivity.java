@@ -32,14 +32,12 @@ import com.google.firebase.firestore.Query;
 public class OfferActivity extends AppCompatActivity {
 
     RecyclerView recview;
-    TextView c1,c2,c3,offerdesc,terms;
+    TextView c1, c2, c3, offerdesc, terms;
     ImageView ofimg;
     androidx.appcompat.widget.Toolbar toolbar;
     FirebaseFirestore firebaseFirestore;
     FirestoreRecyclerAdapter adapter;
     offermodel model;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,24 +53,22 @@ public class OfferActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
         firebaseFirestore = FirebaseFirestore.getInstance();
         offerdesc = findViewById(R.id.offerdesc);
         c1 = findViewById(R.id.c1);
         c2 = findViewById(R.id.c2);
         c3 = findViewById(R.id.c3);
-        terms=findViewById(R.id.terms);
+        terms = findViewById(R.id.terms);
         ofimg = findViewById(R.id.of_img);
-        Intent intent=getIntent();
-
-        String desc=intent.getStringExtra("offerdesc");
-        String cn1=intent.getStringExtra("c1");
-        String cn2=intent.getStringExtra("c2");
-        String cn3=intent.getStringExtra("c3");
-        String image=intent.getExtras().getString("offerimage");
+        Intent intent = getIntent();
+        String desc = intent.getStringExtra("offerdesc");
+        String cn1 = intent.getStringExtra("c1");
+        String cn2 = intent.getStringExtra("c2");
+        String cn3 = intent.getStringExtra("c3");
+        String image = intent.getExtras().getString("offerimage");
 
         offerdesc.setText(desc);
-        terms.setPaintFlags(terms.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG );
+        terms.setPaintFlags(terms.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         c1.setText(cn1);
         c2.setText(cn2);
         c3.setText(cn3);

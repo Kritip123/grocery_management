@@ -30,7 +30,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     lateinit var etPin: EditText
     private lateinit var btnPin: Button
-    private lateinit var offer:ImageView
+    private lateinit var offer: ImageView
     private lateinit var txtPinResult: TextView
     private lateinit var img: ImageView
     private lateinit var toolbar: Toolbar
@@ -48,11 +48,12 @@ class DashboardActivity : AppCompatActivity() {
         //img = ImageView(this@DashboardActivity)
         txtPinResult = findViewById(R.id.txtPinResult)
         txtPinResult.visibility = View.GONE
-        offer=findViewById(R.id.offers)
+        offer = findViewById(R.id.offers)
         etPin = findViewById(R.id.etPin)
         btnPin = findViewById(R.id.btnPin)
         navigationView.menu.getItem(0).isChecked = true
         toolbar = findViewById(R.id.Toolbar)
+        etPin.hideKeyboard()
         auth = FirebaseAuth.getInstance()
         setUpToolbar()
         setMenuIcons(navigationView.menu)
@@ -264,6 +265,10 @@ class DashboardActivity : AppCompatActivity() {
             if (s?.length == 6) {
                 btnPin.performClick()
                 etPin.hideKeyboard()
+            } else {
+                etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                //txtPinResult.visibility = View.VISIBLE
+
             }
         }
     }

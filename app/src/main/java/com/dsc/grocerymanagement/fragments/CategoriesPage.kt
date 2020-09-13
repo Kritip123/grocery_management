@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
 
-class CategoriesPage : Fragment(),IOnBackPressed {
+class CategoriesPage : Fragment(), IOnBackPressed {
     private lateinit var recview: RecyclerView
     private lateinit var searchView: SearchView
     lateinit var progressLayout: RelativeLayout
@@ -39,7 +39,7 @@ class CategoriesPage : Fragment(),IOnBackPressed {
         val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         recview = view.findViewById(R.id.firestore_list)
         setHasOptionsMenu(true)
-        view.findViewById<SearchView>(R.id.search).visibility=View.GONE
+        view.findViewById<SearchView>(R.id.search).visibility = View.GONE
         progressLayout = view.findViewById(R.id.progressLayout)
         progressLayout.visibility = View.VISIBLE
         // searchView=(SearchView) findViewById(R.id.app_bar_search);
@@ -69,7 +69,8 @@ class CategoriesPage : Fragment(),IOnBackPressed {
         // Inflate the layout for this fragment
         return view
     }
-    private fun getList(query: Query){
+
+    private fun getList(query: Query) {
         val options = FirestoreRecyclerOptions.Builder<groceryModel>()
                 .setQuery(query, groceryModel::class.java)
                 .build()
@@ -80,7 +81,7 @@ class CategoriesPage : Fragment(),IOnBackPressed {
             }
 
             override fun onBindViewHolder(holder: GroceryViewHolder, position: Int, model: groceryModel) {
-                holder.container.animation=AnimationUtils.loadAnimation(activity as Context,R.anim.fade)
+                holder.container.animation = AnimationUtils.loadAnimation(activity as Context, R.anim.fade)
                 holder.name.text = model.name
                 holder.price.text = model.price
                 holder.save.text = model.save
@@ -95,8 +96,9 @@ class CategoriesPage : Fragment(),IOnBackPressed {
         recview.layoutManager = LinearLayoutManager(activity as Context)
         recview.adapter = adapter
     }
+
     private class GroceryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val container: RelativeLayout=itemView.findViewById(R.id.container)
+        val container: RelativeLayout = itemView.findViewById(R.id.container)
         val img: ImageView = itemView.findViewById(R.id.imageView)
         val name: TextView = itemView.findViewById(R.id.nametext)
         val save: TextView = itemView.findViewById(R.id.savetext)
@@ -113,6 +115,7 @@ class CategoriesPage : Fragment(),IOnBackPressed {
         super.onStop()
         adapter.stopListening()
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
         val item = menu.findItem(R.id.app_bar_search)
@@ -151,7 +154,7 @@ class CategoriesPage : Fragment(),IOnBackPressed {
         var s1 = s
         if (s.isNotEmpty())
         //s1 = s.substring(0, 1).toUpperCase(Locale.ROOT) + s.substring(1).toLowerCase(Locale.ROOT)
-            s1=s.toLowerCase(Locale.ROOT)
+            s1 = s.toLowerCase(Locale.ROOT)
         //println("lastly ${groceryArrayList.size}")
         val grocery = arrayListOf<groceryModel>()
         grocery.clear()

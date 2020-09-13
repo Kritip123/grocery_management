@@ -15,33 +15,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:theme="@style/ThemeOverlay.AppCompat.Light">
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="scroll|enterAlways">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardImg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                app:layout_scrollFlags="scroll|enterAlways"
                 android:background="#000"
-                app:cardCornerRadius="15dp">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/Toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_border"
-                android:minHeight="?attr/actionBarSize"
-                app:titleTextColor="#fff"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_scrollFlags="scroll|enterAlways" />
+                app:cardCornerRadius="15dp"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/Toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_border"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:titleTextColor="#fff" />
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways"
+                android:background="#fff"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:background="#fff">
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <EditText
                     android:id="@+id/etPin"
@@ -60,14 +62,15 @@
                     android:textColorHint="#9F000000"
                     android:textSize="19sp"
                     android:textStyle="bold" />
+
                 <ImageView
                     android:id="@+id/offers"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/button_border"
-                    android:layout_toEndOf="@id/etPin"
                     android:layout_marginStart="40dp"
-                    android:src="@drawable/offer"/>
+                    android:layout_toEndOf="@id/etPin"
+                    android:background="@drawable/button_border"
+                    android:src="@drawable/offer" />
 
                 <Button
                     android:id="@+id/btnPin"
@@ -77,25 +80,25 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-1dp"
                     android:layout_toEndOf="@id/etPin"
-                    android:visibility="gone"
                     android:background="@drawable/button_border"
                     android:paddingVertical="5dp"
                     android:text="@string/check"
                     android:textColor="#0A3D62"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/txtPinResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/etPin"
                     android:padding="5dp"
                     android:text="@string/not_eligible_for_this_pincode"
                     android:textAlignment="center"
                     android:textColor="#FF0000"
-                    android:visibility="gone"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_below="@id/etPin"
-                    android:textSize="16sp" />
+                    android:visibility="gone" />
             </RelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
