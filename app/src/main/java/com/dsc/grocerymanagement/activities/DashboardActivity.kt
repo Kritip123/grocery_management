@@ -60,6 +60,7 @@ class DashboardActivity : AppCompatActivity() {
         val header = navigationView.getHeaderView(0)
         val numberField: TextView = header.findViewById(R.id.txtMobile)
         numberField.text = auth.currentUser!!.phoneNumber.toString()
+        etPin.clearFocus()
         val actionBarDrawerToggle = ActionBarDrawerToggle(
                 this@DashboardActivity,
                 drawerLayout,
@@ -128,10 +129,10 @@ class DashboardActivity : AppCompatActivity() {
         btnPin.setOnClickListener {
             val pin = etPin.text.toString().trim()
             if (pin.length == 6) {
-                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.okay, 0, 0, 0)
+                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pin, 0, R.drawable.okay, 0)
                 txtPinResult.visibility = View.GONE
             } else {
-                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cancel, 0, 0, 0)
+                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pin, 0, R.drawable.cancel, 0)
                 txtPinResult.visibility = View.VISIBLE
             }
         }
@@ -266,9 +267,8 @@ class DashboardActivity : AppCompatActivity() {
                 btnPin.performClick()
                 etPin.hideKeyboard()
             } else {
-                etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+                etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pin, 0, 0, 0)
                 //txtPinResult.visibility = View.VISIBLE
-
             }
         }
     }

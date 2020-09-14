@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="#45CE30"
     tools:context=".activities.DashboardActivity">
 
-    <SearchView
-        android:id="@+id/search"
+    <RelativeLayout
+        android:id="@+id/rlSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/text_boundary_background"
-        android:padding="5dp"
-        app:layout_scrollFlags="scroll|enterAlways" />
+        android:layout_marginTop="2dp"
+        android:background="@drawable/button_border">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:background="#000"
+            app:cardCornerRadius="100dp">
+
+            <SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                app:layout_scrollFlags="scroll|enterAlways" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/firestore_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp" />
+        android:layout_below="@id/rlSearch"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/button_border"
+        android:paddingTop="5px"
+        android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
     <RelativeLayout
         android:id="@+id/progressLayout"
@@ -42,4 +60,4 @@
             android:layout_marginBottom="40dp" />
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

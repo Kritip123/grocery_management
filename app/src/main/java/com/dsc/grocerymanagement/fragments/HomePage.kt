@@ -43,7 +43,7 @@ class HomePage : Fragment(), IOnBackPressed {
         search.isIconified = false
         search.clearFocus()
         recview = view.findViewById(R.id.firestore_list)
-        progressLayout.visibility = View.GONE
+        progressLayout.visibility = View.VISIBLE
         search()
         firebaseFirestore = FirebaseFirestore.getInstance()
         //Query
@@ -184,6 +184,7 @@ class HomePage : Fragment(), IOnBackPressed {
             searchFlag = 1
             search.isIconified = true
             //search.onActionViewCollapsed()
+            search.clearFocus()
             val query: Query = FirebaseFirestore.getInstance()
                     .collection("grocery")
             getList(query)

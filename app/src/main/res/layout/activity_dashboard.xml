@@ -14,7 +14,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="#18B800"
             android:theme="@style/ThemeOverlay.AppCompat.Light"
             app:layout_scrollFlags="scroll|enterAlways">
 
@@ -41,7 +41,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
+                android:background="@drawable/button_border"
+                android:paddingVertical="6px"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_scrollFlags="scroll|enterAlways">
 
@@ -56,6 +57,7 @@
                     android:inputType="number"
                     android:maxLength="6"
                     android:maxLines="1"
+                    android:drawableLeft="@drawable/ic_pin"
                     android:padding="6dp"
                     android:textAlignment="center"
                     android:textColor="#0A3D62"
@@ -102,9 +104,9 @@
             </RelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-
         <FrameLayout
             android:id="@+id/FrameLayout"
+            android:layout_marginTop="0dp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
