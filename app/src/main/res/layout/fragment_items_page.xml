@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#45CE30"
+    android:background="@drawable/item_background"
     tools:context=".activities.DashboardActivity">
 
     <RelativeLayout
@@ -40,7 +40,7 @@
         android:layout_below="@id/rlSearch"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@drawable/button_border"
+        android:background="@drawable/item_background"
         android:paddingTop="5px"
         android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
