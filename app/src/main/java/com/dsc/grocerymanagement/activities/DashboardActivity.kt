@@ -269,6 +269,7 @@ class DashboardActivity : AppCompatActivity() {
             } else {
                 etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pin, 0, 0, 0)
                 //txtPinResult.visibility = View.VISIBLE
+
             }
         }
     }
