@@ -4,12 +4,10 @@ import android.app.SearchManager
 import android.content.Context
 import android.graphics.Paint
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.SearchView
-import android.widget.TextView
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,12 +26,12 @@ import java.util.*
 class HomePage : Fragment(), IOnBackPressed {
     private lateinit var recview: RecyclerView
     private lateinit var searchView: SearchView
-    private lateinit var search:SearchView
+    private lateinit var search: SearchView
     lateinit var progressLayout: RelativeLayout
     private lateinit var recyclerAdapter: HomeRecyclerAdapter
     private lateinit var firebaseFirestore: FirebaseFirestore
     private var size = 0
-    private var searchFlag=1
+    private var searchFlag = 1
     private val groceryArrayList = arrayListOf<groceryModel>()
     private lateinit var adapter: FirestoreRecyclerAdapter<*, *>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +39,11 @@ class HomePage : Fragment(), IOnBackPressed {
         val view = inflater.inflate(R.layout.fragment_items_page, container, false)
         setHasOptionsMenu(true)
         progressLayout = view.findViewById(R.id.progressLayout)
-        search=view.findViewById(R.id.search)
-        search.isIconified=false
+        search = view.findViewById(R.id.search)
+        search.isIconified = false
         search.clearFocus()
         recview = view.findViewById(R.id.firestore_list)
-        progressLayout.visibility = View.GONE
+        progressLayout.visibility = View.VISIBLE
         search()
         firebaseFirestore = FirebaseFirestore.getInstance()
         //Query
@@ -100,10 +98,10 @@ class HomePage : Fragment(), IOnBackPressed {
                 progressLayout.visibility = View.GONE
             }
         }
-            adapter.notifyDataSetChanged()
-            recview.setHasFixedSize(true)
-            recview.layoutManager = LinearLayoutManager(activity as Context)
-            recview.adapter = adapter
+        adapter.notifyDataSetChanged()
+        recview.setHasFixedSize(true)
+        recview.layoutManager = LinearLayoutManager(activity as Context)
+        recview.adapter = adapter
     }
 
     private class GroceryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -147,14 +145,15 @@ class HomePage : Fragment(), IOnBackPressed {
             recyclerAdapter.notifyDataSetChanged()
         }
     }
-    private fun search(){
+
+    private fun search() {
         val searchManager = context?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         search.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
                 if (s.trim { it <= ' ' }.isNotEmpty()) {
                     adapter.stopListening()
-                    searchFlag=0
+                    searchFlag = 0
                     processSearch(s)
                 }
                 return false
@@ -163,14 +162,14 @@ class HomePage : Fragment(), IOnBackPressed {
             override fun onQueryTextChange(s: String): Boolean {
                 if (s.trim { it <= ' ' }.isNotEmpty()) {
                     adapter.stopListening()
-                    searchFlag=0
+                    searchFlag = 0
                     processSearch(s)
                 }
                 return false
             }
         })
         search.setOnCloseListener {
-            searchFlag=1
+            searchFlag = 1
             val query: Query = FirebaseFirestore.getInstance()
                     .collection("grocery")
             getList(query)
@@ -181,10 +180,11 @@ class HomePage : Fragment(), IOnBackPressed {
 
     override fun onBackPressed(): Boolean {
         //return if (!search.isIconified) {
-        return if(searchFlag==0){
-            searchFlag=1
-            //search.isIconified = true
-            search.onActionViewCollapsed()
+        return if (searchFlag == 0) {
+            searchFlag = 1
+            search.isIconified = true
+            //search.onActionViewCollapsed()
+            search.clearFocus()
             val query: Query = FirebaseFirestore.getInstance()
                     .collection("grocery")
             getList(query)
@@ -194,4 +194,5 @@ class HomePage : Fragment(), IOnBackPressed {
             false
         }
     }
+
 }
