@@ -5,11 +5,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -32,6 +30,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var btnPin: Button
     private lateinit var offer: ImageView
     private lateinit var txtPinResult: TextView
+    private lateinit var pinResult:TextView
     private lateinit var img: ImageView
     private lateinit var toolbar: Toolbar
     private lateinit var auth: FirebaseAuth
@@ -47,9 +46,12 @@ class DashboardActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.NavigationView)
         //img = ImageView(this@DashboardActivity)
         txtPinResult = findViewById(R.id.txtPinResult)
+        pinResult=findViewById(R.id.pinResult)
         txtPinResult.visibility = View.GONE
         offer = findViewById(R.id.offers)
         etPin = findViewById(R.id.etPin)
+        etPin.visibility=View.VISIBLE
+        pinResult.visibility=View.GONE
         btnPin = findViewById(R.id.btnPin)
         navigationView.menu.getItem(0).isChecked = true
         toolbar = findViewById(R.id.Toolbar)
@@ -130,11 +132,21 @@ class DashboardActivity : AppCompatActivity() {
             val pin = etPin.text.toString().trim()
             if (pin.length == 6) {
                 etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pin, 0, R.drawable.okay, 0)
+                val result="$pin confirmed<br><font color='#00FF00'>Change?</font>"
+                pinResult.text=Html.fromHtml(result)
                 txtPinResult.visibility = View.GONE
+                etPin.visibility=View.GONE
+                pinResult.visibility=View.VISIBLE
             } else {
                 etPin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pin, 0, R.drawable.cancel, 0)
                 txtPinResult.visibility = View.VISIBLE
             }
+        }
+        pinResult.setOnClickListener {
+            pinResult.visibility=View.GONE
+            etPin.visibility=View.VISIBLE
+            etPin.requestFocus()
+            (etPin.context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
         }
     }
 

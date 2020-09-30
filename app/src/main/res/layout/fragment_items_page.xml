@@ -12,7 +12,7 @@
         android:id="@+id/rlSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/button_border">
 
         <androidx.cardview.widget.CardView
