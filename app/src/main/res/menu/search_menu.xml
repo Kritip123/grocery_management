@@ -6,7 +6,6 @@
         android:title="@string/search"
         android:checked="true"
         android:checkable="true"
-        android:icon="@drawable/ic_search"
         app:showAsAction="always"
         android:orderInCategory="100"
         app:actionViewClass="android.widget.SearchView" />
