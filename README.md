@@ -25,7 +25,7 @@ Purchasing groceries from home made easy
 ### Images
 
 
-<img src="https://user-images.githubusercontent.com/62319328/93020331-00aa2080-f5fa-11ea-912e-220791ea243c.png" width="210" height="440">   <img src="https://user-images.githubusercontent.com/62319328/94767767-014d0000-03cb-11eb-9f19-2fa84c161c93.png" width="210" height="440">   <img src="https://user-images.githubusercontent.com/62319328/94767772-05791d80-03cb-11eb-97ff-67f61010812f.png" width="210" height="440">   <img src="https://user-images.githubusercontent.com/62319328/95209710-47112a80-0808-11eb-9800-0c8a3fa5a428.png" width="210" height="440">
+<img src="https://user-images.githubusercontent.com/62319328/93020331-00aa2080-f5fa-11ea-912e-220791ea243c.png" width="200" height="430"> <img src="https://user-images.githubusercontent.com/62319328/94767772-05791d80-03cb-11eb-97ff-67f61010812f.png" width="200" height="430"> <img src="https://user-images.githubusercontent.com/62319328/95213847-de787c80-080c-11eb-90a7-ad83033dd842.png" width="200" height="430">
 
 
 
