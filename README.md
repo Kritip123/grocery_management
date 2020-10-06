@@ -6,11 +6,6 @@ Purchasing groceries from home made easy
 
 [![API](https://img.shields.io/badge/API-28%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=28) 
 
-## Previews
-
-<img src="https://user-images.githubusercontent.com/62319328/93020331-00aa2080-f5fa-11ea-912e-220791ea243c.png" width="250" height="470">  <img src="https://user-images.githubusercontent.com/62319328/94767767-014d0000-03cb-11eb-9f19-2fa84c161c93.png" width="250" height="470">  <img src="https://user-images.githubusercontent.com/62319328/94767772-05791d80-03cb-11eb-97ff-67f61010812f.png" width="250" height="470">
-
-
 ## Details
 
   
@@ -20,12 +15,27 @@ Purchasing groceries from home made easy
 
 - app will identify what is price of the scanned product through a dataset of product prices.
 
+## Previews
+
+### Nav GIF
+
+
+<img src = "https://media.giphy.com/media/T4KYpPUHBmrxY6Vrdl/giphy.gif" width="320" height="400">
+
+### Images
+
+
+<img src="https://user-images.githubusercontent.com/62319328/93020331-00aa2080-f5fa-11ea-912e-220791ea243c.png" width="210" height="440">   <img src="https://user-images.githubusercontent.com/62319328/94767767-014d0000-03cb-11eb-9f19-2fa84c161c93.png" width="210" height="440">   <img src="https://user-images.githubusercontent.com/62319328/94767772-05791d80-03cb-11eb-97ff-67f61010812f.png" width="210" height="440">   <img src="https://user-images.githubusercontent.com/62319328/95209710-47112a80-0808-11eb-9800-0c8a3fa5a428.png" width="210" height="440">
+
+
+
+
 ## Installation Procedure
 
 1. Open Command Prompt
 2. Navigate to your workspace
 3. Paste the following URL :  git clone https:<i></i>//github.com/Kritip123/grocery_management.git
-4. Import the project in your Android Studio and begin coding!
+4. Import the project in your Android Studio and happy coding! 😃
 
 
 ## Built On
